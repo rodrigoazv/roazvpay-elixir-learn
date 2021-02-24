@@ -6,8 +6,14 @@ defmodule Rocketpay.Numbers do
   end
 
   defp handle_file({:ok, file}) do
-    lista = String.split(file, ",")
-    Enum.map(lista, fn number -> String.to_integer(number) end)
+    result =
+      file
+      |> String.split(",")
+      |> Enum.map(fn number -> String.to_integer(number) end)
+      |> Enum.sum()
+    {:ok, %{result: result}}
   end
+
   defp handle_file({:error, _reason}), do: {:error, "invalid file!"}
+
 end
