@@ -1,10 +1,10 @@
-defmodule Rocketpay.Account.Deposit do
+defmodule Rocketpay.Account.Withdraw do
   alias Rocketpay.Account.Operations
 
   alias Rocketpay.{Repo}
   def call(params) do
     params
-    |> Operations.call(:deposit)
+    |> Operations.call(:withdraw)
     |> run_transaction()
   end
 
