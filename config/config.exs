@@ -17,6 +17,10 @@ config :rocketpay, RocketpayWeb.Endpoint,
   render_errors: [view: RocketpayWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: Rocketpay.PubSub,
   live_view: [signing_salt: "1rwdFBmV"]
+#config auth
+config :rocketpay, :basic_auth,
+  username: "local",
+  password: "local"
 
 config :rocketpay, Rocketpay.Repo,
   migration_primary_key: [type: :binary_id],
