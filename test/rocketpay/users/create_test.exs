@@ -21,6 +21,22 @@ defmodule Rockepay.Users.CreateTest do
 
       assert %User{name: "Rafael", age: 18, id: ^user_id} = user
     end
+    test "when there are invalid, return an error" do
+      params = %{
+        name: "Rafael",
+        nickname: "rafa1",
+        email: "rafa@gamil.com",
+        age: 18
+      }
+
+      {:error, changeset}  = Create.call(params)
+
+      expected_error = %{
+        password: ["can't be blank"]
+      }
+
+      assert errors_on(changeset) == expected_error
+    end
   end
 
 end
