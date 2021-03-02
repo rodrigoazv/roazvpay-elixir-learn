@@ -5,7 +5,7 @@ defmodule Rocketpay.Users.Signin do
   def token_sign_in(email, password) do
     case email_password_auth(email, password) do
       {:ok, user} -> Guardian.encode_and_sign(user)
-      _ -> {:error, :unauthorized}
+      {:error, reason} -> {:error, reason}
     end
   end
 
@@ -17,14 +17,18 @@ defmodule Rocketpay.Users.Signin do
   defp get_by_email(email) when is_binary(email) do
     case Repo.get_by(User, email: email)do
       nil ->
-        {:error, "User not found"}
+        {:error, :user_not_found}
       user ->
         {:ok, user}
     end
   end
 
   defp verify_password(password, %User{} = user) when is_binary(password) do
-    user
-    |> Bcrypt.check_pass(password)
+    if Bcrypt.verify_pass(password, user.password_hash) do
+      {:ok, user}
+    else
+      {:error, :invalid_password}
+    end
   end
+
 end
