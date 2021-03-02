@@ -22,6 +22,11 @@ config :rocketpay, :basic_auth,
   username: "local",
   password: "local"
 
+# Guardian config
+config :rocketpay, Rocketpay.Guardian,
+  issuer: "rockepay",
+  secret_key: "key"
+
 config :rocketpay, Rocketpay.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]

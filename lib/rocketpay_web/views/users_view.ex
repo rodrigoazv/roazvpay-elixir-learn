@@ -12,4 +12,9 @@ defmodule RocketpayWeb.UsersView do
       }
     }
   end
+
+  def render("jwt.json", %{token: token}) do
+    %{token: token}
+  end
+
 end
