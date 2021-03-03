@@ -1,8 +1,8 @@
 defmodule Rocketpay.Users.Signin do
-  alias Rocketpay.{Repo, User, Account}
+  alias Rocketpay.{Repo, User}
   alias Rocketpay.Guardian
 
-  def token_sign_in(email, password) do
+  def call(%{"email" => email, "password" => password}) do
     case email_password_auth(email, password) do
       {:ok, user} -> Guardian.encode_and_sign(user)
       {:error, reason} -> {:error, reason}

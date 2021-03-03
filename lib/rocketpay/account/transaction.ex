@@ -8,7 +8,6 @@ defmodule Rocketpay.Account.Transaction do
   alias Rocketpay.Account.Operations
 
   def call(%{"from" => from_id, "to" => to_id, "value" => value}) do
-
     withdraw_params = build_params(from_id, value)
     deposit_params = build_params(to_id, value)
 

@@ -1,7 +1,7 @@
 defmodule Rocketpay.Users.Create do
   alias Rocketpay.{Repo, User, Account}
   alias Ecto.Multi
-  def call(params)  do
+  def call(params) do
     Multi.new()
     |> Multi.insert(:create_user, User.changeset(params))
     |> Multi.run(:create_account, fn repo, %{create_user: user} ->
