@@ -1,67 +1,8 @@
-defmodule Rocketpay.MixProject do
-  use Mix.Project
-
-  def project do
-    [
-      app: :rocketpay,
-      version: "0.1.0",
-      elixir: "~> 1.7",
-      elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
-      start_permanent: Mix.env() == :prod,
-      aliases: aliases(),
-      deps: deps()
-    ]
-  end
-
-  # Configuration for the OTP application.
-  #
-  # Type `mix help compile.app` for more information.
-  def application do
-    [
-      mod: {Rocketpay.Application, []},
-      extra_applications: [:logger, :runtime_tools]
-    ]
-  end
-
-  # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
-
-  # Specifies your project dependencies.
-  #
-  # Type `mix help deps` for examples and options.
-  defp deps do
-    [
-      {:phoenix, "~> 1.5.7"},
-      {:phoenix_ecto, "~> 4.1"},
-      {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_live_dashboard, "~> 0.4"},
-      {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:bcrypt_elixir, "~> 2.0"},
-      {:joken, "~> 2.0-rc0"}
-
-    ]
-  end
-
-  # Aliases are shortcuts or tasks specific to the current project.
-  # For example, to install project dependencies and perform other setup tasks, run:
-  #
-  #     $ mix setup
-  #
-  # See the documentation for `Mix` for more info on aliases.
-  defp aliases do
-    [
-      setup: ["deps.get", "ecto.setup"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
-    ]
-  end
-end
+Headers: [{"accept", "*/*"}, {"content-length", "29964"}, 
+{"content-type", "multipart/form-data; boundary=X-INSOMNIA-BOUNDARY"}, {"host", "localhost:4000"}, {"user-agent", "insomnia/2020.5.2"}]
+Params: 
+%Plug.Conn{adapter: {Plug.Cowboy.Conn, :...}, assigns: 
+%{layout: false, upload: "Ok"}, before_send: [#Function<0.11227428/1 in Plug.Telemetry.call/2>], 
+body_params: %{"upload" => %Plug.Upload{content_type: "application/pdf", filename: "3007919032.pdf", path: "/tmp/plug-1614/multipart-1614868518-901198398165798-4"}}, 
+cookies: %{}, halted: false, host: "localhost", method: "POST", owner: #PID<0.502.0>, params: %{"upload" => %Plug.Upload{content_type: "application/pdf", filename: "3007919032.pdf", path: "/tmp/plug-1614/multipart-1614868518-901198398165798-4"}}, path_info: ["api", "users", "upload"], path_params: %{}, port: 4000, private: %{RocketpayWeb.Router => {[], %{}}, :phoenix_action => :upload_image, :phoenix_controller => RocketpayWeb.UsersController, :phoenix_endpoint => RocketpayWeb.Endpoint, :phoenix_format => "json", :phoenix_layout => {RocketpayWeb.LayoutView, :app}, :phoenix_request_logger => {"request_logger", "request_logger"}, :phoenix_router => RocketpayWeb.Router, :phoenix_template => "upload.json", :phoenix_view => RocketpayWeb.UsersView, :plug_multipart => :done, :plug_session_fetch => #Function<1.123471702/1 in Plug.Session.fetch_session/1>}, query_params: %{}, query_string: "", remote_ip: {127, 0, 0, 1}, req_cookies: %{}, req_headers: [{"accept", "*/*"}, {"content-length", "29964"}, {"content-type", "multipart/form-data; boundary=X-INSOMNIA-BOUNDARY"}, {"host", "localhost:4000"}, {"user-agent", "insomnia/2020.5.2"}], request_path: "/api/users/upload", resp_body: nil, resp_cookies: %{}, resp_headers: [{"content-type", "application/json; charset=utf-8"}, 
+{"cache-control", "max-age=0, private, must-revalidate"}, {"x-request-id", "FmkqXJcQKrnkP7kAAAEl"}], scheme: :http, script_name: [], secret_key_base: :..., state: :sent, status: 

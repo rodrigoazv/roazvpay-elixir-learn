@@ -15,15 +15,17 @@ defmodule RocketpayWeb.UsersController do
     end
   end
 
+  def upload_image(conn, %{"upload" => %Plug.Upload{} = upload}) do
+    conn
+    |> put_status(:ok)
+    |> render("upload.json", upload: "Ok")
+  end
   def sign_in(conn, params) do
-    case Rocketpay.sign_in(params) do
-      {:ok, token, _claims} ->
-        conn
+    with {:ok, token, _claims} <- Rocketpay.sign_in(params) do
+      conn
         |> put_status(:created)
         |> render("jwt.json", token: token)
-      _ ->
-        {:error, :unauthorized}
-      end
+    end
     #put_resp_cookie(conn, "my-cookie", "%{user_id: user.id}", sign: true)
   end
 

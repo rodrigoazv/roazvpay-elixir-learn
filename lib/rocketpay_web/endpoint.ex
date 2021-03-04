@@ -39,14 +39,15 @@ defmodule RocketpayWeb.Endpoint do
 
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
-
+  # Code to receive a image and json
   plug Plug.Parsers,
-    parsers: [:urlencoded, :multipart, :json],
-    pass: ["*/*"],
-    json_decoder: Phoenix.json_library()
+    parsers: [:urlencoded, {:multipart, length: 200_000}, :json],
+    pass: [],
+    json_decoder: Poison
 
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
   plug RocketpayWeb.Router
+
 end

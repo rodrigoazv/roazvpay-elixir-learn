@@ -7,11 +7,4 @@ defmodule RocketpayWeb.FallbackController do
     |> put_view(RocketpayWeb.ErrorView)
     |> render("400.json", result: result)
   end
-
-  def call(conn, {:error, :unauthorized}) do
-    conn
-    |> put_status(:unauthorized)
-    |> json(%{error: "Login error"})
-  end
-
 end

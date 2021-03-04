@@ -17,4 +17,7 @@ defmodule RocketpayWeb.UsersView do
     %{token: token}
   end
 
+  def render("upload.json", %{upload: upload}) do
+    %{upload: upload}
+  end
 end

@@ -2,6 +2,7 @@ defmodule RocketpayWeb.Router do
   use RocketpayWeb, :router
 
   import Plug.BasicAuth
+  import Plug.ValidateFile
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -9,6 +10,16 @@ defmodule RocketpayWeb.Router do
 
   pipeline :auth do
     plug :basic_auth, Application.compile_env(:rocketpay, :basic_auth)
+  end
+
+  pipeline :upload_file do
+    plug :validate_file
+  end
+
+  scope "/api", RocketpayWeb do
+    pipe_through [:api, :upload_file]
+
+    post "/users/upload", UsersController, :upload_image
   end
 
   scope "/api", RocketpayWeb do
