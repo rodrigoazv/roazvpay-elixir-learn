@@ -13,8 +13,8 @@ defmodule RocketpayWeb.UsersView do
     }
   end
 
-  def render("jwt.json", %{token: token}) do
-    %{token: token}
+  def render("jwt.json", %{message: message}) do
+    %{message: message}
   end
 
   def render("upload.json", %{upload: upload}) do

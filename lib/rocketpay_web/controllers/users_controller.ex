@@ -24,7 +24,9 @@ defmodule RocketpayWeb.UsersController do
     with {:ok, token, _claims} <- Rocketpay.sign_in(params) do
       conn
         |> put_status(:created)
-        |> render("jwt.json", token: token)
+        |> put_resp_cookie("authorization", "Baerer #{token}")
+        |> put_resp_header("authorization", "Baerer #{token}")
+        |> render("jwt.json", %{message: "Login Ok!"})
     end
     #put_resp_cookie(conn, "my-cookie", "%{user_id: user.id}", sign: true)
   end
